@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import NewsItemContainer from "./components/NewsItemContainer";
 
 class App extends Component {
   render() {
+    const header_style = {
+      textAlign: "center"
+    };
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <div className="m-5" style={header_style}>
+          <h1>News App - React</h1>
+        </div>
+
+        <div className="d-flex justify-content-between flex-wrap m-4">
+          <NewsItemContainer item="newsitem" />
+        </div>
       </div>
     );
   }
