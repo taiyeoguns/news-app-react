@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import _ from "lodash";
+import { get_sources } from "./services/newsapi";
 
 import NewsItemContainer from "./components/NewsItemContainer";
 
@@ -9,19 +9,10 @@ class App extends Component {
     sources: []
   };
 
-  componentDidMount() {
-    axios
-      .get(
-        "https://newsapi.org/v2/sources?language=en&apiKey=" +
-          process.env.REACT_APP_NEWS_API_KEY
-      )
-      .then(res =>
-        this.setState({ sources: _.sampleSize(res.data.sources, 3) })
-      )
-      .catch(err => {
-        console.log(err.message);
-        alert(err.message);
-      });
+  async componentDidMount() {
+    const _sources = await get_sources();
+
+    this.setState({ sources: _.sampleSize(_sources, 3) });
   }
 
   render() {
